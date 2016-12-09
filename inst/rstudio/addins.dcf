@@ -1,0 +1,5 @@
+
+Name: Section Comment
+Description: Creates a section break with comment padded with hyphens
+Binding: sectioncomment
+Interactive: false

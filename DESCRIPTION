@@ -1,0 +1,15 @@
+Package: sectioncomment
+Type: Package
+Title: Create Clean Section Break Comments
+Version: 0.1.0
+Authors@R: person("Steven", "Mortimer", email = "reportmort@gmail.com", role = c("aut", "cre"))
+Description: Creates an 80 character width comment padded with hyphens, similar to how comments are shown in Hadley's style guide (http://adv-r.had.co.nz/Style.html)
+URL: https://github.com/reportmort/sectioncomment
+BugReports: https://github.com/reportmort/sectioncomment/issues
+Depends:
+  R (>= 3.2.0)
+Imports:
+  stringr (>= 1.0.0)
+License: MIT + file LICENSE
+LazyData: true
+RoxygenNote: 5.0.1

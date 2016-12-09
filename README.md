@@ -49,14 +49,14 @@ comments to come back and fill in later
 
 If you select a multiple lines of text then all comments 
 within the selection will be converted to section comments 
-after clicking Addins > Section Comment
+after clicking `Addins > Section Comment`
 
 ![](internal/comment_selection.gif)
 
 #### Scan Entire Document for Comments to Convert 
 
-If you put the cursor at line 1, col1 or hit CTRL+A before 
-clicking Addins > Section Comment, then all comments prefixed 
+If you put the cursor at line 1, col1 or hit `CTRL+A` before 
+clicking `Addins > Section Comment`, then all comments prefixed 
 with 2 or more hashes will be converted to Section Comments
 
 ![](internal/convert_all.gif)

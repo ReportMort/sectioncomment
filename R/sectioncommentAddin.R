@@ -15,14 +15,14 @@ sectioncomment <- function() {
     
     cursor_ln <- context$selection[[1]]$range$start[["row"]]
     cursor_col <- context$selection[[1]]$range$start[["column"]]
-    this_double_mode <- FALSE
+    entire_doc <- FALSE
 
     if (cursor_ln == 1 & cursor_col == 1)
-      this_double_mode <- TRUE
+      entire_doc <- TRUE
       
-    if (sel$text != '' | this_double_mode){
+    if (sel$text != '' | entire_doc){
       
-      if(!this_double_mode){
+      if(!entire_doc){
         ln_start <- context$selection[[1]]$range$start[["row"]]
         ln_end <- context$selection[[1]]$range$end[["row"]]  
       } else {
@@ -30,11 +30,28 @@ sectioncomment <- function() {
         ln_end <- length(context$contents)
       }
       
-      for (i in ln_start:ln_end){
+      potential_target_lines <- context$contents[ln_start:ln_end]
+      
+      # pre-screen the rows for comment-like lines 
+      # so that we don't loop through all lines
+      # and modifying ranges where it's not necessary
+      # and doesn't do anything
+      found_target_lines <- target_line_identifier(potential_target_lines, 
+                                                   doc_mode=entire_doc)
+      
+      if(length(found_target_lines) > 0){
         
-        value <- context$contents[i]
+        target_lines <- seq.int(from=ln_start, to=ln_end)[found_target_lines]
         
-        rstudioapi::modifyRange(whole_line_range(i), comment_styler(value, double_mode=this_double_mode), context$id)
+        for (i in target_lines){
+          
+          value <- context$contents[i]
+          
+          rstudioapi::modifyRange(whole_line_range(i), 
+                                  comment_styler(value,
+                                                 doc_mode=entire_doc), 
+                                  context$id)
+        }
       }
       
       break
@@ -58,18 +75,18 @@ sectioncomment <- function() {
 #' This function is the logic that runs to reformat
 #' the comment as a section break
 #' 
-#' @usage comment_styler(x, double_mode=FALSE, l = 80)
+#' @usage comment_styler(x, doc_mode=FALSE, l = 80)
 #' @importFrom stringr str_pad
 #' @param x a string to format
-#' @param double_mode a logical indicating only to convert 
+#' @param doc_mode a logical indicating only to convert 
 #' lines starting with at least a double hash sign
 #' @param l an integer indicating length to pad
 #' @return a string that is formatted
-comment_styler <- function(x, double_mode=FALSE, l=80) {
+comment_styler <- function(x, doc_mode=FALSE, l=80) {
   
   starter_regex <- '(\\s*#+\\s*)(.*)'
   
-  if(double_mode)
+  if(doc_mode)
     starter_regex <- '(\\s*#{2,}\\s*)(.*)'
   
   if(grepl(starter_regex, x)){
@@ -78,6 +95,19 @@ comment_styler <- function(x, double_mode=FALSE, l=80) {
   }
   
   return(x)
+}
+
+
+target_line_identifier <- function(x, doc_mode=FALSE){
+  
+  starter_regex <- '(\\s*#+\\s*)(.*)'
+  
+  if(doc_mode)
+    starter_regex <- '(\\s*#{2,}\\s*)(.*)'
+  
+  lines_matching <- which(grepl(starter_regex, x))
+    
+  return(lines_matching)
 }
 
 

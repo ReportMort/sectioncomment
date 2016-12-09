@@ -1,5 +1,5 @@
 
 Name: Section Comment
-Description: Creates a section break with comment padded with hyphens
+Description: Creates a section break comment padded with hyphens to 80 characters
 Binding: sectioncomment
 Interactive: false

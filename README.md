@@ -1,9 +1,22 @@
 # sectioncomment
 
 Creates an 80 character width comment padded with hyphens, similar to how 
-comments are shown in Hadley's style guide (http://adv-r.had.co.nz/Style.html)
+comments are recommended in Hadley's style guide (http://adv-r.had.co.nz/Style.html). 
+"Use commented lines of - and = to break up your file into easily readable chunks."
+
+```r
+# Load data ---------------------------
+# Plot data ---------------------------
+```
 
 ## System Requirements
+
+* Run RStudio v0.99.878 or later
+  - <https://www.rstudio.com/products/rstudio/download/preview/>
+* Run `rstudioapi` package v0.5 or later
+  - `install.packages("rstudioapi", type = "source")`
+* Populate your *Addins* dropdown menus with some examples
+  - `devtools::install_github("rstudio/addinexamples", type = "source")`
 
 ## Installation
 

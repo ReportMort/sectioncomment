@@ -38,12 +38,6 @@ in order to help with code readability
 
 ![](internal/existing_comment.gif)
 
-#### Create a New Comment as a Section Comment
-
-Useful when you just want to add placeholder section
-comments to come back and fill in later
-
-![](internal/add_new.gif)
 
 #### Select Text and Convert all Comments to Section Comments
 
@@ -53,9 +47,18 @@ after clicking `Addins > Section Comment`
 
 ![](internal/comment_selection.gif)
 
+
+#### Create a New Comment as a Section Comment
+
+Useful when you just want to add placeholder section
+comments to come back and fill in later
+
+![](internal/add_new.gif)
+
+
 #### Scan Entire Document for Comments to Convert 
 
-If you put the cursor at line 1, col1 or hit `CTRL+A` before 
+If you put the cursor at Line 1, Column 1 or hit `CTRL+A` before 
 clicking `Addins > Section Comment`, then all comments prefixed 
 with 2 or more hashes will be converted to Section Comments
 
